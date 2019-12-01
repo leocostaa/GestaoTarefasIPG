@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoTarefasIPG.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191130183853_Colaborador")]
+    [Migration("20191201205037_Colaborador")]
     partial class Colaborador
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,28 +21,42 @@ namespace GestaoTarefasIPG.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GestaoTarefasIPG.Models.Colaborador", b =>
+            modelBuilder.Entity("GestaoTarefasIPG.Models.Cargo", b =>
                 {
-                    b.Property<int>("ColaboradorId")
+                    b.Property<int>("CargoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DataNascimento")
+                    b.Property<int>("Nivel")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Profissao")
-                        .HasColumnType("int");
+                    b.HasKey("CargoId");
 
-                    b.Property<string>("email")
+                    b.ToTable("Cargo");
+                });
+
+            modelBuilder.Entity("GestaoTarefasIPG.Models.Setor", b =>
+                {
+                    b.Property<int>("SetorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Local")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ColaboradorId");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Colaborador");
+                    b.HasKey("SetorId");
+
+                    b.ToTable("Setor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

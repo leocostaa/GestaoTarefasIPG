@@ -2,7 +2,7 @@
 
 namespace GestaoTarefasIPG.Data.Migrations
 {
-    public partial class Colaborador : Migration
+    public partial class Colabora : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
