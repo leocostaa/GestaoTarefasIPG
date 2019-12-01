@@ -43,6 +43,26 @@ namespace GestaoTarefasIPG.Data.Migrations
                     b.ToTable("Colaborador");
                 });
 
+            modelBuilder.Entity("GestaoTarefasIPG.Models.Setor", b =>
+                {
+                    b.Property<int>("SetorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Local")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SetorId");
+
+                    b.ToTable("Setor");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

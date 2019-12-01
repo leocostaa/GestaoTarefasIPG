@@ -1,0 +1,29 @@
+﻿@model GestaoTarefasIPG.Models.Setor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="position: relative;">Detalhes</h1>
+
+<div>
+    <hr />
+    <dl class="row" style="position: relative; color:white">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+    </dl>
+</div>
+<div style="position: relative;">
+    <a asp-action="Edit" asp-route-id="@Model.SetorId" class="btn btn-primary">Edit</a> <p></p>
+    <a asp-action="Index" >Back to List</a>
+</div>
