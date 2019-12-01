@@ -5,12 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+    <h1 style="position: relative;">Detalhes</h1>
 
 <div>
-    <h4>Cargo</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="position: relative; color:white">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
@@ -25,7 +24,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div style="position: relative;">
     <a asp-action="Edit" asp-route-id="@Model.CargoId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

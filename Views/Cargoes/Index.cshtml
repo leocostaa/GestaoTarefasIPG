@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+    <h1 style="position: relative;">Cargos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="position: relative;" >Criar novo cargo</a>
 </p>
-<table class="table">
+<table class="table" style="position: relative;">
     <thead>
         <tr>
             <th>
@@ -22,7 +22,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="font-size:20px; color:white">
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.Nivel)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CargoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CargoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CargoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CargoId" class="btn btn-dark">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CargoId" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CargoId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
