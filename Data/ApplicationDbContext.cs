@@ -15,5 +15,6 @@ namespace GestaoTarefasIPG.Data
         }
         public DbSet<GestaoTarefasIPG.Models.Colaborador> Colaborador { get; set; }
         public DbSet<GestaoTarefasIPG.Models.Setor> Setor { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Cargo> Cargo { get; set; }
     }
 }
