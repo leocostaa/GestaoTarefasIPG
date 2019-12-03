@@ -4,14 +4,16 @@ using GestaoTarefasIPG.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GestaoTarefasIPG.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191201205037_Colaborador")]
+    partial class Colaborador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,30 +37,6 @@ namespace GestaoTarefasIPG.Data.Migrations
                     b.HasKey("CargoId");
 
                     b.ToTable("Cargo");
-                });
-
-            modelBuilder.Entity("GestaoTarefasIPG.Models.Colaborador", b =>
-                {
-                    b.Property<int>("ColaboradorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DataNascimento")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Profissao")
-                        .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ColaboradorId");
-
-                    b.ToTable("Colaborador");
                 });
 
             modelBuilder.Entity("GestaoTarefasIPG.Models.Setor", b =>

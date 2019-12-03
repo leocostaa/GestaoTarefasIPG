@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GestaoTarefasIPG.Models.Cargo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1 style="position: relative;">Cargos</h1>
+
+<p>
+    <a asp-action="Create" style="position: relative;" >Criar novo cargo</a>
+</p>
+<table class="table" style="position: relative;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nivel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="font-size:20px; color:white">
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CargoId" class="btn btn-dark">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CargoId" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CargoId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
