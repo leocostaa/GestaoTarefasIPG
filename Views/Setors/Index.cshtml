@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestaoTarefasIPG.Models.Setor>
+﻿@model SetoresViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,34 +9,72 @@
 <p>
     <a asp-action="Create" class="btn btn-primary" style="position: relative;">Criar novo setor</a>
 </p>
-<table class="table" style="position: relative;">
-    <thead>
+@*<table class="table" style="position: relative;">
+        <thead>
+            <tr>
+                <th style="color:white">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th style="color:white">
+                    @Html.DisplayNameFor(model => model.Local)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="font-size:20px; color:white">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Local)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SetorId" class="btn btn-warning">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.SetorId" class="btn btn-info">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SetorId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+<table class="table table-dark table-striped" style="position: relative;">
+    <thead class="thead-dark">
         <tr>
-            <th style="color:white">
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th style="color:white">
-                @Html.DisplayNameFor(model => model.Local)
-            </th>
-            <th></th>
+            <th scope="col">Nome</th>
+            <th scope="col">Local</th>
         </tr>
     </thead>
-    <tbody style="font-size:20px; color:white">
-        @foreach (var item in Model)
+    <tbody>
+        @foreach (var p in Model.Setores)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Local)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.SetorId" class="btn btn-warning">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SetorId" class="btn btn-info">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SetorId" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>@p.Nome</td>
+            <td>@p.Local</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@p.SetorId" class="btn btn-warning">Edit</a> |
+                <a asp-action="Details" asp-route-id="@p.SetorId" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@p.SetorId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+  
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+@for (int i = Model.PrimeiraPagina; i <= Model.UltimaPagina; i++)
+{
+    @if (i == Model.PaginaAtual)
+    {
+        <!--<a href="#">@i</a>-->
+        <!--<a asp-action="Index" asp-route-page="@i" class="btn btn-outline-info">@i</a>-->
+        <a href="#" class="btn btn-primary" style="position: relative">@i</a>
+    }
+    else
+    {
+        <a asp-action="Index" asp-route-page="@i" style="position: relative" class="btn btn-secondary">@i</a>
+    }
+}

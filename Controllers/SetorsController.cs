@@ -11,17 +11,31 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class SetorsController : Controller
     {
+    
         private readonly GestaoTarefasIPGDbContext _context;
-
+        private const int NUMERO_DE_SETORES_POR_PAGINA = 5;
+        private const int NUMERO_DE_PAGINAS_ANTES_DEPOIS = 3;
         public SetorsController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
 
         // GET: Setors
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(await _context.Setor.ToListAsync());
+            decimal numberProducts = _context.Setor.Count();
+            SetoresViewModel vm = new SetoresViewModel
+            {
+                Setores = _context.Setor
+                //.OrderBy(p => p.Nome)
+                .Skip((page - 1) * NUMERO_DE_SETORES_POR_PAGINA)
+                .Take(NUMERO_DE_SETORES_POR_PAGINA),
+                PaginaAtual = page,
+                TotalPaginas = (int)Math.Ceiling(numberProducts / NUMERO_DE_SETORES_POR_PAGINA),
+                PrimeiraPagina = Math.Max(1, page - NUMERO_DE_PAGINAS_ANTES_DEPOIS),
+            };
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_DE_PAGINAS_ANTES_DEPOIS);
+            return View(vm);
         }
 
         // GET: Setors/Details/5
