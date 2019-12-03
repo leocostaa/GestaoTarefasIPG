@@ -7,15 +7,15 @@
 <h1 style="position: relative;">Setores</h1>
 
 <p>
-    <a asp-action="Create" style="position: relative;">Criar novo setor</a>
+    <a asp-action="Create" class="btn btn-primary" style="position: relative;">Criar novo setor</a>
 </p>
 <table class="table" style="position: relative;">
     <thead>
         <tr>
-            <th>
+            <th style="color:white">
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
-            <th>
+            <th style="color:white">
                 @Html.DisplayNameFor(model => model.Local)
             </th>
             <th></th>
@@ -32,7 +32,7 @@
                     @Html.DisplayFor(modelItem => item.Local)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.SetorId" class="btn btn-dark">Edit</a> |
+                    <a asp-action="Edit" asp-route-id="@item.SetorId" class="btn btn-warning">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.SetorId" class="btn btn-info">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.SetorId" class="btn btn-danger">Delete</a>
                 </td>
