@@ -12,6 +12,8 @@ namespace GestaoTarefasIPG.Controllers
     public class CargosController : Controller
     {
         private readonly GestaoTarefasIPGDbContext _context;
+        private const int NUMERO_DE_CARGOS_POR_PAGINA = 5;
+        private const int NUMERO_DE_PAGINAS_ANTES_DEPOIS = 3;
 
         public CargosController(GestaoTarefasIPGDbContext context)
         {
@@ -19,11 +21,22 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(await _context.Cargos.ToListAsync());
+            decimal numberProducts = _context.Cargos.Count();
+            CargosViewModel vm = new CargosViewModel
+            {
+                Cargos = _context.Cargos
+                //.OrderBy(p => p.Nome)
+                .Skip((page - 1) * NUMERO_DE_CARGOS_POR_PAGINA)
+                .Take(NUMERO_DE_CARGOS_POR_PAGINA),
+                PaginaAtual = page,
+                TotalPaginas = (int)Math.Ceiling(numberProducts / NUMERO_DE_CARGOS_POR_PAGINA),
+                PrimeiraPagina = Math.Max(1, page - NUMERO_DE_PAGINAS_ANTES_DEPOIS),
+            };
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_DE_PAGINAS_ANTES_DEPOIS);
+            return View(vm);
         }
-
         // GET: Cargos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
