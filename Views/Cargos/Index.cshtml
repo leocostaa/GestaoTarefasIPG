@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+    <h1 style="position: relative;">Cargos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary" style="position: relative;">Criar novo cargos</a>
 </p>
 
 <table class="table table-dark table-striped" style="position: relative;">
@@ -25,9 +25,9 @@
                 <td>@p.Nome</td>
                 <td>@p.Superior</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@p.CargosId" class="btn btn-warning">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@p.CargosId" class="btn btn-info">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@p.CargosId" class="btn btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@p.CargosId" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@p.CargosId" class="btn btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@p.CargosId" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
         }
