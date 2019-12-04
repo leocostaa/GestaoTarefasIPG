@@ -1,0 +1,50 @@
+﻿@model CargosViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1 style="position: relative;">Cargos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary" style="position: relative;">Criar novo cargos</a>
+</p>
+
+<table class="table table-dark table-striped" style="position: relative;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Superior</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Cargos)
+        {
+            <tr>
+                <td>@p.Nome</td>
+                <td>@p.Superior</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@p.CargosId" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@p.CargosId" class="btn btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@p.CargosId" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@for (int i = Model.PrimeiraPagina; i <= Model.UltimaPagina; i++)
+{
+    @if (i == Model.PaginaAtual)
+    {
+        <!--<a href="#">@i</a>-->
+        <!--<a asp-action="Index" asp-route-page="@i" class="btn btn-outline-info">@i</a>-->
+        <a href="#" class="btn btn-primary" style="position: relative">@i</a>
+    }
+    else
+    {
+        <a asp-action="Index" asp-route-page="@i" style="position: relative" class="btn btn-secondary">@i</a>
+    }
+}
+
