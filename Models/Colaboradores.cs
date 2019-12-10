@@ -18,7 +18,7 @@ namespace GestaoTarefasIPG.Models
         [Required]
         public string Profissao { get; set; }
 
-        [RegularExpression("\d[1 - 31])(-\d[1 - 12])(-\d[1900 - 2050]")]
+       // [RegularExpression("\d[1 - 31])(-\d[1 - 12])(-\d[1900 - 2050]")]
         public int DataNascimento { get; set; }
 
         [EmailAddress]
