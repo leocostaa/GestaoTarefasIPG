@@ -12,9 +12,11 @@ namespace GestaoTarefasIPG.Models
         public int CargosId { get; set; }
         
         [Required]
+        [StringLength (20, MinimumLength = 3)]  
         public string Nome { get; set; }
         
         [Required]
+        [StringLength (20, MinimumLength = 3)]  
         public string Superior { get; set; }
 
 
