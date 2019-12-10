@@ -11,8 +11,10 @@ namespace GestaoTarefasIPG.Models
         [Required]
         public int SetorId { get; set; }
         [Required]
+        [StringLength(50, MinimumLength = 3)]
         public String Nome { get; set; }
         [Required]
+        [StringLength(50, MinimumLength =3)]
         public String Local { get; set; }
     }
 }
