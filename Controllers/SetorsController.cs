@@ -72,9 +72,11 @@ namespace GestaoTarefasIPG.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(setor);
+                ViewBag.Message = "Setor criado com sucesso!";
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("ViewSUCESSSO");
             }
+
             return View(setor);
         }
 
@@ -124,7 +126,8 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Message = "Setor editado com sucesso!";
+                return View("ViewSUCESSSO");
             }
             return View(setor);
         }
@@ -155,7 +158,8 @@ namespace GestaoTarefasIPG.Controllers
             var setor = await _context.Setor.FindAsync(id);
             _context.Setor.Remove(setor);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Message = "Setor apagado com sucesso!";
+            return View("ViewSUCESSSO");
         }
 
         private bool SetorExists(int id)
