@@ -72,8 +72,9 @@ namespace GestaoTarefasIPG.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(setor);
-                ViewBag.Message = "Setor criado com sucesso!";
                 await _context.SaveChangesAsync();
+                ViewBag.Message = "Setor criado com sucesso!";
+                
                 return View("ViewSUCESSSO");
             }
 
