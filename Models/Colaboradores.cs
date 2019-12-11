@@ -13,7 +13,7 @@ namespace GestaoTarefasIPG.Models
         public string Nome { get; set; }
 
         [Required]
-        public int ColaboradorId { get; set; }
+        public int ColaboradoresId { get; set; }
 
         [Required]
         public string Profissao { get; set; }

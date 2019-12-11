@@ -15,4 +15,6 @@ using GestaoTarefasIPG.Models;
         public DbSet<GestaoTarefasIPG.Models.Setor> Setor { get; set; }
 
         public DbSet<GestaoTarefasIPG.Models.Cargos> Cargos { get; set; }
+
+        public DbSet<GestaoTarefasIPG.Models.Colaboradores> Colaboradores { get; set; }
     }
