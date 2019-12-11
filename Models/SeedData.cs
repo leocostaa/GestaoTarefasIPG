@@ -11,6 +11,7 @@ namespace GestaoTarefasIPG.Models
         {
             PopulateSetor(db);
             PopulateCargos(db);
+            PopulateColaboradores(db);
         }
 
         private static void PopulateSetor(GestaoTarefasIPGDbContext db)
@@ -41,6 +42,19 @@ namespace GestaoTarefasIPG.Models
                 new Cargos { Nome = "Vice-Diretor", Superior = "Diretor" },
                 new Cargos { Nome = "Diretor", Superior = "Estado" },
                 new Cargos { Nome = "Rececionista", Superior = "Vice-Diretor" }
+                );
+            db.SaveChanges();
+        }
+
+        private static void PopulateColaboradores(GestaoTarefasIPGDbContext db)
+        {
+            if (db.Colaboradores.Any()) return;
+
+            db.Colaboradores.AddRange(
+                new Colaboradores { Nome = "Leonardo Costa", Profissao = "Vice-Diretor", DataNascimento = 01/08/2008, email = "leonardo@gmail.com" },
+                new Colaboradores { Nome = "Hugo Amaral", Profissao = "Empregada de Limpezas", DataNascimento = 02/02/95, email = "amaral@gmail.com" },
+                new Colaboradores { Nome = "Hugo Figueira", Profissao = "Rececionista", DataNascimento = 03/05/1975, email = "hugo@gmail.com" },
+                new Colaboradores { Nome = "Telmo Salvado", Profissao = "Diretor", DataNascimento = 04/01/1960, email = "salvador@gmail.com" }
                 );
             db.SaveChanges();
         }
