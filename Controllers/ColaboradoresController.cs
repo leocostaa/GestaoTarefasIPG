@@ -12,6 +12,8 @@ namespace GestaoTarefasIPG.Controllers
     public class ColaboradoresController : Controller
     {
         private readonly GestaoTarefasIPGDbContext _context;
+        private const int NUMERO_DE_COLABORADORES_POR_PAGINA = 5;
+        private const int NUMERO_DE_PAGINAS_ANTES_DEPOIS = 3;
 
         public ColaboradoresController(GestaoTarefasIPGDbContext context)
         {
@@ -19,10 +21,23 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Colaboradores
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(await _context.Colaboradores.ToListAsync());
+            decimal numberProducts = _context.Colaboradores.Count();
+            ColaboradoresViewModel vm = new ColaboradoresViewModel
+            {
+                Colaboradores = _context.Colaboradores
+                //.OrderBy(p => p.Nome)
+                .Skip((page - 1) * NUMERO_DE_COLABORADORES_POR_PAGINA)
+                .Take(NUMERO_DE_COLABORADORES_POR_PAGINA),
+                PaginaAtual = page,
+                TotalPaginas = (int)Math.Ceiling(numberProducts / NUMERO_DE_COLABORADORES_POR_PAGINA),
+                PrimeiraPagina = Math.Max(1, page - NUMERO_DE_PAGINAS_ANTES_DEPOIS),
+            };
+            vm.UltimaPagina = Math.Min(vm.TotalPaginas, page + NUMERO_DE_PAGINAS_ANTES_DEPOIS);
+            return View(vm);
         }
+        
 
         // GET: Colaboradores/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -138,12 +153,15 @@ namespace GestaoTarefasIPG.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
             var colaboradores = await _context.Colaboradores.FindAsync(id);
             _context.Colaboradores.Remove(colaboradores);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Message = "Setor apagado com sucesso!";
+            return View("ViewSUCESSSO");
         }
-
+        
+       
         private bool ColaboradoresExists(int id)
         {
             return _context.Colaboradores.Any(e => e.ColaboradoresId == id);
