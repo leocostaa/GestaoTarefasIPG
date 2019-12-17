@@ -6,48 +6,16 @@ namespace GestaoTarefasIPG.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Setor",
-                maxLength: 50,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Local",
-                table: "Setor",
-                maxLength: 50,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Superior",
-                table: "Cargos",
-                maxLength: 20,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Cargos",
-                maxLength: 20,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
             migrationBuilder.CreateTable(
                 name: "Colaboradores",
                 columns: table => new
                 {
                     ColaboradoresId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(maxLength: 50, nullable: false),
+                    Nome = table.Column<string>(nullable: false),
                     Profissao = table.Column<string>(nullable: false),
-                    DataNascimento = table.Column<int>(nullable: false),
-                    email = table.Column<string>(nullable: true)
+                    email = table.Column<string>(nullable: false),
+                    DataNascimento = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,38 +27,6 @@ namespace GestaoTarefasIPG.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Colaboradores");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Setor",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 50);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Local",
-                table: "Setor",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 50);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Superior",
-                table: "Cargos",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 20);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Nome",
-                table: "Cargos",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 20);
         }
     }
 }
