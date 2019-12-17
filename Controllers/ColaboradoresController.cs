@@ -74,6 +74,7 @@ namespace GestaoTarefasIPG.Controllers
             {
                 _context.Add(colaboradores);
                 await _context.SaveChangesAsync();
+                ViewBag.Message = "Colaborador criado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             return View(colaboradores);
@@ -126,6 +127,7 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
+                ViewBag.Message = "Colaborador editado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             return View(colaboradores);
@@ -158,7 +160,7 @@ namespace GestaoTarefasIPG.Controllers
             var colaboradores = await _context.Colaboradores.FindAsync(id);
             _context.Colaboradores.Remove(colaboradores);
             await _context.SaveChangesAsync();
-            ViewBag.Message = "Setor apagado com sucesso!";
+            ViewBag.Message = "Colaborador apagado com sucesso!";
             return View("ViewSUCESSSO");
         }
         
