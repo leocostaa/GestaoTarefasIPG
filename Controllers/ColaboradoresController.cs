@@ -102,6 +102,7 @@ namespace GestaoTarefasIPG.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Nome,ColaboradoresId,Profissao,DataNascimento,email")] Colaboradores colaboradores)
         {
+
             if (id != colaboradores.ColaboradoresId)
             {
                 return NotFound();
