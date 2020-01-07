@@ -44,7 +44,7 @@
                             }
                             else
                             {
-                                <li class="cta"><a asp-area="Identity" asp-page="/account/logout" class="nav-link"><span>LOGOUT</span></a></li>
+                                <li class="cta"><a asp-area="Identity" asp-page="/account/logout" class="nav-link" asp-route-returnUrl="@Url.Page("/Account/Logout", new { area = "Identity" })" method="post"><span>LOGOUT</span></a></li>
                             }
                         </ul>
                     </nav>
