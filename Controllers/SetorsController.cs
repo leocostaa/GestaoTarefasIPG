@@ -57,7 +57,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin,func")]
         public IActionResult Create()
         {
             return View();
@@ -82,7 +82,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,12 +8,87 @@ namespace GestaoTarefasIPG.Models
 {
     public class SeedData
     {
+        private const string ADMIN_ROLE = "admin";
+        private const string FUNCIONARIO_ROLE = "func";
+
         public static void Populate(GestaoTarefasIPGDbContext db)
         {
             PopulateSetor(db);
             PopulateCargos(db);
             PopulateColaboradores(db);
         }
+
+
+        public static async Task PopulateUsersAsync(UserManager<IdentityUser> userManager)
+        {
+            const string ADMIN_USERNAME = "admiiin@ipg.pt";
+            const string ADMIN_PASSWORD = "Secret123$";
+
+            const string FUNC_USERNAME = "colaborador1@ipg.pt";
+            const string FUNC_PASSWORD = "Secret123$";
+
+            IdentityUser user = await userManager.FindByNameAsync(ADMIN_USERNAME);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    UserName = ADMIN_USERNAME,
+                    Email = ADMIN_USERNAME
+                };
+
+                await userManager.CreateAsync(user, ADMIN_PASSWORD);
+            }
+
+            if (!await userManager.IsInRoleAsync(user, ADMIN_ROLE))
+            {
+                await userManager.AddToRoleAsync(user, ADMIN_ROLE);
+            }
+
+            user = await userManager.FindByNameAsync(FUNC_USERNAME);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    UserName = FUNC_USERNAME,
+                    Email = FUNC_USERNAME
+                };
+
+                await userManager.CreateAsync(user, FUNC_PASSWORD);
+            }
+
+            if (!await userManager.IsInRoleAsync(user, FUNCIONARIO_ROLE))
+            {
+                await userManager.AddToRoleAsync(user, FUNCIONARIO_ROLE);
+            }
+
+            user = await userManager.FindByNameAsync("test@ipg.pt");
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    UserName = "test@ipg.pt",
+                    Email = "test@ipg.pt"
+                };
+
+                await userManager.CreateAsync(user, ADMIN_PASSWORD);
+            }
+        }
+
+
+        public static async Task CreateRolesAsync(RoleManager<IdentityRole> roleManager)
+        {
+
+            if (!await roleManager.RoleExistsAsync(ADMIN_ROLE))
+            {
+                await roleManager.CreateAsync(new IdentityRole(ADMIN_ROLE));
+            }
+
+            if (!await roleManager.RoleExistsAsync(FUNCIONARIO_ROLE))
+            {
+                await roleManager.CreateAsync(new IdentityRole(FUNCIONARIO_ROLE));
+            }
+        }
+
 
         private static void PopulateSetor(GestaoTarefasIPGDbContext db)
         {
