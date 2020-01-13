@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestaoTarefasIPG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestaoTarefasIPG.Controllers
 {
@@ -20,7 +21,7 @@ namespace GestaoTarefasIPG.Controllers
             _context = context;
         }
 
-        // GET: Setors
+
         public IActionResult Index(int page = 1)
         {
             decimal numberProducts = _context.Setor.Count();
@@ -56,7 +57,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        // GET: Setors/Create
+        [Authorize(Roles = "admin,func")]
         public IActionResult Create()
         {
             return View();
@@ -81,7 +82,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        // GET: Setors/Edit/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -133,7 +134,7 @@ namespace GestaoTarefasIPG.Controllers
             return View(setor);
         }
 
-        // GET: Setors/Delete/5
+        [Authorize(Roles = "admin,func")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

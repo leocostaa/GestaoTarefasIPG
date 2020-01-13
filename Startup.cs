@@ -31,8 +31,10 @@ namespace GestaoTarefasIPG
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -41,7 +43,7 @@ namespace GestaoTarefasIPG
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -70,12 +72,15 @@ namespace GestaoTarefasIPG
                 endpoints.MapRazorPages();
             });
 
+            SeedData.CreateRolesAsync(roleManager).Wait();
+
             if (env.IsDevelopment())
             {
                 using (var serviceScope = app.ApplicationServices.CreateScope())
                 {
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGDbContext>();
                     SeedData.Populate(db);
+                    SeedData.PopulateUsersAsync(userManager).Wait();
                 }
             }
         }

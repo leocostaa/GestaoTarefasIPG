@@ -22,14 +22,20 @@ namespace GestaoTarefasIPG.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet(string returnUrl = null)
         {
+            return await WorksLogout(returnUrl);
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            return await WorksLogout(returnUrl);
+        }
+        private async Task<IActionResult> WorksLogout(string returnUrl)
+        {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);
