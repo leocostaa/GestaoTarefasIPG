@@ -57,8 +57,6 @@ namespace GestaoTarefasIPG.Models
                 new Colaboradores { Nome = "Telmo Salvado", Profissao = "Diretor", DataNascimento = 15071996, email = "salvador@gmail.com" },
                 new Colaboradores { Nome = "Manuel Proença", Profissao = "Secretariado", DataNascimento = 05081960, email = "mpmp@gmail.com" },
                 new Colaboradores { Nome = "Odete Santos", Profissao = "Empregada de Limpeza", DataNascimento = 14021958, email = "oodete@gmail.com" },
-                new Colaboradores { Nome = "Pedro Oliveira", Profissao = "Secretariado", DataNascimento = 28121980, email = "pedrooliveira0@gmail.com" },
-                new Colaboradores { Nome = "Leandro Migas", Profissao = "Tesoureiro", DataNascimento = 13021975, email = "migas@gmail.com" },
                 new Colaboradores { Nome = "Nigel Gomez", Profissao = "Professor", DataNascimento = 13021975, email = "gomez@gmail.com" }
                 );
             db.SaveChanges();

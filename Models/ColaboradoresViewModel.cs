@@ -12,5 +12,6 @@ namespace GestaoTarefasIPG.Models
         public int TotalPaginas { get; set; }
         public int PrimeiraPagina { get; set; }
         public int UltimaPagina { get; set; }
+        
     }
 }
