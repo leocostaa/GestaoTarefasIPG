@@ -34,7 +34,7 @@
                         </ul>
                     </nav>
                 </div>
-
+     
                 <div class="ml-auto w-25">
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
@@ -44,7 +44,11 @@
                             }
                             else
                             {
-                                <li class="cta"><a asp-area="Identity" asp-page="/account/logout" class="nav-link" asp-route-returnUrl="@Url.Page("/Account/Logout", new { area = "Identity" })" method="post"><span>LOGOUT</span></a></li>
+                                @if (User.IsInRole("admin"))
+                                 {
+                                    <li class="cta"><a asp-area="Identity" asp-page="/account/register" class="nav-link"><span>Registar</span></a></li>
+                                 }
+                                <li class="cta"><a asp-area="Identity" asp-page="/account/logout" class="nav-link" asp-route-returnUrl="@Url.Action("Index","Home", new { area = "" })" method="post"><span>LOGOUT</span></a></li>
                             }
                         </ul>
                     </nav>
